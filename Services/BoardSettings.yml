@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+    name: boardsettings
+spec:  
+    replicas: 1
+    selector:    
+        matchLabels:      
+          app: boardsettings 
+    template:    
+        metadata:      
+          labels:        
+            app: boardsettings    
+        spec:      
+          containers:      
+          - name: boardsettings        
+            image: lexicon420/board-settings        
+            imagePullPolicy: IfNotPresent        
+            env:          
+              - name:  PORT            
+                value: "7248"        
+            resources:          
+              limits:            
+                memory: "64Mi"            
+                cpu: "128m"        
+            ports:        
+            - containerPort: 7248          
+              name: http 
+---
+apiVersion: v1
+kind: Service
+metadata:  
+   name: boardsettings
+spec:  
+   selector:    
+      app: boardsettings
+   ports:  
+   - port: 80    
