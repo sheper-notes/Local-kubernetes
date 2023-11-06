@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+    name: guid-api
+spec:  
+    replicas: 3
+    selector:    
+        matchLabels:      
+          app: guid-api 
+    template:    
+        metadata:      
+          labels:        
+            app: guid-api    
+        spec:      
+          containers:      
+          - name: guid-api        
+            image: lexicon420/boarddb        
+            imagePullPolicy: IfNotPresent        
+            env:          
+              - name:  PORT            
+                value: "7248"        
+            resources:          
+              limits:            
+                memory: "64Mi"            
+                cpu: "128m"        
+            ports:        
+            - containerPort: 7248          
+              name: http 
+---
+apiVersion: v1
+kind: Service
+metadata:  
+   name: guid-api
+spec:  
+   selector:    
+      app: guid-api  
+   ports:  
+   - port: 80    
