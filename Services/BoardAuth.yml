@@ -18,13 +18,13 @@ spec:
             imagePullPolicy: IfNotPresent        
             env:          
               - name:  PORT            
-                value: "7248"        
+                value: "80"  
             resources:          
               limits:            
                 memory: "64Mi"            
                 cpu: "128m"        
             ports:        
-            - containerPort: 7248          
+            - containerPort: 80          
               name: http 
 ---
 apiVersion: v1
@@ -36,3 +36,6 @@ spec:
       app: boardauth
    ports:  
    - port: 80    
+     targetPort: 80
+
+

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: boarddb
+  name: gateway
   labels:
-    app: boarddb
+    app: gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: boarddb
+      app: gateway
   template:
     metadata:
       labels:
-        app: boarddb
+        app: gateway
     spec:
       containers:
-      - name: boarddb
-        image: lexicon420/boarddb
+      - name: gateway
+        image: lexicon420/api-gateway
         ports:
         - containerPort: 80
         resources:
@@ -27,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: boarddb-service
+  name: gateway-service
 spec:
   selector:
-    app: boarddb
+    app: gateway
   ports:
     - protocol: TCP
       port: 80
