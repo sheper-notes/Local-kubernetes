@@ -4,7 +4,7 @@ metadata:
   name: api-ingress
 spec:
   rules:
-  - host: api.localhost
+  - host: "api.localhost"
     http:
       paths:
       - path: /
@@ -12,5 +12,15 @@ spec:
         backend:
           service:
             name: gateway-service
+            port:
+              number: 80
+  - host: "localhost"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: client
             port:
               number: 80
