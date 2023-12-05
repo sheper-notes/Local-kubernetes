@@ -17,6 +17,12 @@ spec:
       containers:
       - name: boardauth
         image: lexicon420/board-auth 
+        env:
+        - name: boardsettingsURL
+          valueFrom:
+            configMapKeyRef: 
+              name: config-map
+              key: boardsettingsURL
         ports:
         - containerPort: 80
         resources:
