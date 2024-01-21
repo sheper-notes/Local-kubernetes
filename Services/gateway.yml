@@ -16,12 +16,29 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: lexicon420/api-gateway
+        image: lexicon420/api-gateway:loadtest
+        imagePullPolicy: Always
+        env:
+        - name: "CorsOrigin"
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: CorsOrigin
+        - name: "auth0Domain"
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: auth0Domain
+        - name: "auth0Audience"
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: auth0Audience
         ports:
         - containerPort: 80
         resources:
           limits:
-            memory: 512Mi
+            memory: 1024Mi
             cpu: "1"
 ---
 apiVersion: v1

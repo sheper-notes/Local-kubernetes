@@ -14,15 +14,30 @@ spec:
         spec:      
           containers:      
           - name: boardsettings        
-            image: lexicon420/board-settings        
-            imagePullPolicy: IfNotPresent        
+            image: lexicon420/board-settings:loadtest        
+            imagePullPolicy: Always        
             env:          
               - name:  PORT            
-                value: "7248"        
+                value: "7248"      
+              - name: authURL
+                  valueFrom:
+                    secretKeyRef:
+                      name: secrets
+                      key: authURL  
+              - name: authSecret
+                  valueFrom:
+                    secretKeyRef:
+                      name: secrets
+                      key: authSecret
+              - name: databaseConn
+                  valueFrom:
+                    secretKeyRef:
+                      name: secrets
+                      key: databaseConn 
             resources:          
               limits:            
-                memory: "64Mi"            
-                cpu: "128m"        
+                memory: "1024Mi"            
+                cpu: "2"        
             ports:        
             - containerPort: 7248          
               name: http 

@@ -17,6 +17,37 @@ spec:
       containers:
       - name: boarddb
         image: lexicon420/boarddb
+        env:
+        - name: authURL
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: authURL 
+        - name: mqURL
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: mqURL  
+        - name: ContactPoint
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: ContactPoint
+        - name: CPort
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: CPort
+        - name: CName
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: CName
+        - name: CPW
+            valueFrom:
+              secretKeyRef:
+                name: secrets
+                key: CPW
         ports:
         - containerPort: 80
         resources:

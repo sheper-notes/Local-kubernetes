@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config-map
-data:
-  authURL: sheper.eu.auth0.com
-  boardsettingsURL: boardsettings-service.default.svc.cluster.local
